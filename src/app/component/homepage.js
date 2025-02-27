@@ -12,30 +12,37 @@ const fetcher = async (url) => {
 
 export default function Homepage() {
   const { data, error } = useSWR(
-    "http://localhost:1337/api/homepage?populate=*",
+    "https://fearless-deer-39d52e19d7.strapiapp.com/api/homepage?populate=*",
     fetcher
   );
 
   // Mensagens de erro ou carregamento
-  if (error) return <p className="text-red-500">Falha ao carregar os dados.</p>;
-  if (!data) return <p className="text-gray-500">Carregando...</p>;
+  if (error) return <p className="text-center text-red-500 mt-10">❌ Falha ao carregar os dados.</p>;
+  if (!data) return <p className="text-center text-gray-500 mt-10">⏳ Carregando...</p>;
 
   // Dados vindos da API
   const { title, description, image } = data.data;
 
   return (
-    <div className="p-4 bg-gray-50 min-h-screen">
-      <h1 className="text-3xl font-bold text-center text-blue-700 mb-6">{title}</h1>
-      <div className="text-gray-600 mb-6">
-        {description?.map((para, index) => (
-          <p key={index}>{para.children[0].text}</p>
-        ))}
-      </div>
+    <div className="p-6 sm:p-10 bg-gray-50 min-h-screen flex flex-col items-center">
+      {/* Título */}
+      <h1 className="text-3xl font-bold text-blue-700 mb-6 text-center">{title}</h1>
+
+      {/* Descrição */}
+      {description && (
+        <div className="text-gray-600 mb-6 max-w-2xl text-center">
+          {description.map((para, index) => (
+            <p key={index} className="mb-4 last:mb-0">{para.children[0].text}</p>
+          ))}
+        </div>
+      )}
+
+      {/* Imagem */}
       {image?.length > 0 && (
         <img
-          src={`http://localhost:1337${image[0].formats.medium.url}`}
+          src={image[0].formats?.medium?.url || image[0].url} // Usa medium se disponível, senão usa original
           alt={image[0].name || "Imagem"}
-          className="w-full h-56 object-cover rounded-md"
+          className="w-full max-w-lg h-56 object-cover rounded-lg shadow-md"
         />
       )}
     </div>
