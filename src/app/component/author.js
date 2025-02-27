@@ -21,7 +21,7 @@ export default function AuthorsPage() {
   if (!data) return <p className="text-center text-gray-500 mt-10">⏳ Carregando...</p>;
 
   return (
-    <div className="p-6 sm:p-10 bg-gray-100 min-h-screen">
+    <div className="p-6 sm:p-10 bg-gray-100 min-h-screen rounded-md">
       <h1 className="text-3xl font-bold text-blue-700 text-center mb-8">Autores</h1>
 
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

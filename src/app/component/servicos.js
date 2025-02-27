@@ -13,7 +13,7 @@ const fetcher = async (url) => {
 
 export default function ServicosPage() {
   const { data, error } = useSWR(
-    "http://localhost:1337/api/services?populate=*",
+    "https://fearless-deer-39d52e19d7.strapiapp.com/api/services?populate=*",
     fetcher
   );
 
@@ -22,7 +22,7 @@ export default function ServicosPage() {
   if (!data) return <p className="text-center text-gray-500 mt-10">⏳ Carregando...</p>;
 
   return (
-    <div className="p-6 sm:p-10 bg-gray-100 min-h-screen">
+    <div className="p-6 sm:p-10 bg-gray-100 rounded-md min-h-screen">
       <h1 className="text-3xl font-bold text-blue-700 text-center mb-8">Serviços</h1>
 
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -33,7 +33,7 @@ export default function ServicosPage() {
           >
             {/* Imagem */}
             <Image
-              src={`http://localhost:1337${servico.image?.formats?.medium?.url || '/uploads/default-image.jpg'}`}
+              src={servico.image?.formats?.medium?.url || '/uploads/default-image.jpg'}
               alt={servico.title}
               width={750}
               height={422}

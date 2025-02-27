@@ -24,7 +24,7 @@ export default function Homepage() {
   const { title, description, image } = data.data;
 
   return (
-    <div className="p-6 sm:p-10 bg-gray-50 min-h-screen flex flex-col items-center">
+    <div className="p-6 sm:p-10 bg-gray-50 min-h-screen rounded-md flex flex-col items-center">
       {/* Título */}
       <h1 className="text-3xl font-bold text-blue-700 mb-6 text-center">{title}</h1>
 

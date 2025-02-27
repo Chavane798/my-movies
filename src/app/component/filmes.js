@@ -19,7 +19,7 @@ export default function Filmes() {
   if (!data) return <p className="text-gray-500">Carregando...</p>;
 
   return (
-    <div className="p-4 bg-gray-50 min-h-screen">
+    <div className="p-4 bg-gray-50 min-h-screen rounded-md  ">
       <h1 className="text-3xl font-bold text-center text-blue-700 mb-6">Filmes</h1>
       <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {data?.data?.length > 0 ? (
